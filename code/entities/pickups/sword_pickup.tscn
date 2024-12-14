@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsrgwewbn3p3"]
+
+[ext_resource type="PackedScene" uid="uid://cgt1csjo2k203" path="res://code/entities/pickups/pickup.tscn" id="1_2djdm"]
+[ext_resource type="Script" path="res://code/entities/pickups/weapon_pickup.gd" id="2_tftp0"]
+
+[node name="SwordPickup" node_paths=PackedStringArray("COLLIDER") instance=ExtResource("1_2djdm")]
+script = ExtResource("2_tftp0")
+weapon_type = 2
+COLLIDER = NodePath("Collider")

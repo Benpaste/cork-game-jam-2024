@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgt1csjo2k203"]
+
+[ext_resource type="Script" path="res://code/entities/pickups/pickup.gd" id="1_mkwpm"]
+[ext_resource type="Texture2D" uid="uid://b5as08obc76ph" path="res://assets/textures/icon.svg" id="2_bcbho"]
+[ext_resource type="Script" path="res://code/entities/collider.gd" id="3_785yx"]
+
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("COLLIDER") groups=["pickups"]]
+script = ExtResource("1_mkwpm")
+COLLIDER = NodePath("Collider")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_bcbho")
+
+[node name="Collider" type="Node2D" parent="."]
+script = ExtResource("3_785yx")

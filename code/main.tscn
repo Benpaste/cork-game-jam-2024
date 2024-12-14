@@ -1,28 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgkl6bc6m1xu3"]
+[gd_scene load_steps=6 format=3 uid="uid://bgkl6bc6m1xu3"]
 
-[ext_resource type="Script" path="res://code/character.gd" id="1_gwxbj"]
 [ext_resource type="PackedScene" uid="uid://c6ab5k5xdet28" path="res://code/platform.tscn" id="1_oleg7"]
-[ext_resource type="Texture2D" uid="uid://b5as08obc76ph" path="res://assets/textures/icon.svg" id="2_a1s8i"]
-[ext_resource type="Script" path="res://code/character_collider.gd" id="4_5f6xt"]
+[ext_resource type="Script" path="res://code/main.gd" id="1_qebgb"]
+[ext_resource type="PackedScene" uid="uid://k6uam5ycgwdw" path="res://code/entities/player/player.tscn" id="3_nj8rc"]
+[ext_resource type="PackedScene" uid="uid://c3wesuhok3qin" path="res://code/entities/pickups/health_pickup.tscn" id="4_scry6"]
+[ext_resource type="PackedScene" uid="uid://dsrgwewbn3p3" path="res://code/entities/pickups/sword_pickup.tscn" id="5_i150t"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_qebgb")
 
-[node name="Platform" parent="." instance=ExtResource("1_oleg7")]
+[node name="Platform1" parent="." instance=ExtResource("1_oleg7")]
 
 [node name="Platform2" parent="." instance=ExtResource("1_oleg7")]
-position = Vector2(113, 74)
+position = Vector2(113, 82)
+length = 500
 
 [node name="Platform3" parent="." instance=ExtResource("1_oleg7")]
 position = Vector2(92, 113)
 
-[node name="Character" type="Node2D" parent="."]
-position = Vector2(16, 20)
-script = ExtResource("1_gwxbj")
+[node name="Player" parent="." node_paths=PackedStringArray("STATS", "COLLIDER") instance=ExtResource("3_nj8rc")]
+STATS = NodePath("Stats")
+COLLIDER = NodePath("Collider")
 
-[node name="Sprite2D" type="Sprite2D" parent="Character"]
-position = Vector2(0, -6)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_a1s8i")
+[node name="HealthPickup" parent="." node_paths=PackedStringArray("COLLIDER") instance=ExtResource("4_scry6")]
+position = Vector2(147, 40)
+COLLIDER = NodePath("Collider")
 
-[node name="CharacterCollider" type="Node2D" parent="Character"]
-script = ExtResource("4_5f6xt")
+[node name="SwordPickup" parent="." node_paths=PackedStringArray("COLLIDER") instance=ExtResource("5_i150t")]
+position = Vector2(70, 51)
+COLLIDER = NodePath("Collider")

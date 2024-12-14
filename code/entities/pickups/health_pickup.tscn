@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3wesuhok3qin"]
+
+[ext_resource type="PackedScene" uid="uid://cgt1csjo2k203" path="res://code/entities/pickups/pickup.tscn" id="1_k2cvf"]
+[ext_resource type="Script" path="res://code/entities/pickups/stats_pickup.gd" id="2_0mhmh"]
+
+[node name="Pickup" node_paths=PackedStringArray("COLLIDER") instance=ExtResource("1_k2cvf")]
+script = ExtResource("2_0mhmh")
+health = 1
+magic = 0
+lives = 0
+COLLIDER = NodePath("Collider")

@@ -3,7 +3,7 @@ extends Node2D
 class_name Platform
 
 
-const COLLISION_SNAP := 50
+const COLLISION_SNAP := 1#50
 
 @export var length := 10
 var rect_color := Color.WHITE
@@ -11,8 +11,10 @@ var collision_color := Color.RED
 
 
 func _draw() -> void:
-	draw_rect(Constants.shrink_rect(get_local_collision_rect()), collision_color)
 	draw_rect(get_draw_rect(), rect_color)
+	if !Constants.DEBUG: return
+	draw_rect(Constants.shrink_rect(get_local_collision_rect()), collision_color)
+	
 
 
 func _process(delta: float) -> void:

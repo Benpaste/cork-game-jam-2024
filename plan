@@ -1,0 +1,30 @@
+hercules
+
+health, magic, item
+
+
+items:
+- double jump (wings)
+- sword
+- charge (helmet)
+- stomp (boots)
+- time stop (lyre)
+
+
+enemies:
+- medusa
+- minotaur
+- thunderclouds
+- stymphalian birds
+- harpies
+- cerberus
+- hydra
+- lion
+- snake
+- satyr
+- amphora
+
+
+powerups:
+- apples for hp
+- potion for mp
