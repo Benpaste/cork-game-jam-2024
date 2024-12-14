@@ -11,5 +11,18 @@ config_version=5
 [application]
 
 config/name="Cork Game Jam 2024"
+run/main_scene="res://code/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/textures/icon.svg"
+
+[display]
+
+window/size/viewport_width=300
+window/size/viewport_height=200
+window/size/window_width_override=900
+window/size/window_height_override=600
+window/stretch/mode="viewport"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

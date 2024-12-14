@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ab5k5xdet28"]
+
+[ext_resource type="Script" path="res://code/platform.gd" id="1_ys4c2"]
+
+[node name="Platform" type="Node2D" groups=["platforms"]]
+position = Vector2(12, 96)
+script = ExtResource("1_ys4c2")
+length = 1000
