@@ -14,7 +14,6 @@ func _draw() -> void:
 	draw_rect(get_draw_rect(), rect_color)
 	if !Constants.DEBUG: return
 	draw_rect(Constants.shrink_rect(get_local_collision_rect()), collision_color)
-	
 
 
 func _process(delta: float) -> void:

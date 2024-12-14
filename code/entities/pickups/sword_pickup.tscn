@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsrgwewbn3p3"]
+[gd_scene load_steps=5 format=3 uid="uid://dsrgwewbn3p3"]
 
 [ext_resource type="PackedScene" uid="uid://cgt1csjo2k203" path="res://code/entities/pickups/pickup.tscn" id="1_2djdm"]
 [ext_resource type="Script" path="res://code/entities/pickups/weapon_pickup.gd" id="2_tftp0"]
+[ext_resource type="Texture2D" uid="uid://fj4admewyo6h" path="res://assets/textures/sword.png" id="3_o1urj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwu3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o1urj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SwordPickup" node_paths=PackedStringArray("COLLIDER") instance=ExtResource("1_2djdm")]
 script = ExtResource("2_tftp0")
 weapon_type = 2
 COLLIDER = NodePath("Collider")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_mwu3b")

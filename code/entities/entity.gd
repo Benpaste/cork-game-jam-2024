@@ -1,6 +1,8 @@
 extends Node2D
 class_name Entity
 
+var facing := 1
+var active := true
 var GRAVITY := Constants.GRAVITY
 var MAX_SPEED := 20
 var MAX_FALL := 100
@@ -51,3 +53,7 @@ func apply_max_speed() -> void:
 func apply_velocity() -> void:
 	scaled_position += velocity
 	position = scaled_position / Constants.SCALE_FACTOR
+
+
+func is_grounded() -> bool:
+	return len(COLLIDER.get_touching_platforms()) > 0

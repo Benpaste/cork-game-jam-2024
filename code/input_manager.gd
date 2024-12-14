@@ -24,3 +24,7 @@ static func get_vector(callable: Callable) -> Vector2i:
 		if callable.call(action):
 			out += DIRECTIONS[action]
 	return out
+
+
+static func just_attack() -> bool:
+	return Input.is_action_just_pressed("ui_accept")

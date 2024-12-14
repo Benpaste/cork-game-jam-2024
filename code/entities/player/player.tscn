@@ -1,9 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://k6uam5ycgwdw"]
+[gd_scene load_steps=11 format=3 uid="uid://k6uam5ycgwdw"]
 
 [ext_resource type="Script" path="res://code/entities/player/player.gd" id="1_cj1ld"]
-[ext_resource type="Texture2D" uid="uid://b5as08obc76ph" path="res://assets/textures/icon.svg" id="2_8yh73"]
+[ext_resource type="Texture2D" uid="uid://1nr6m2x86u0v" path="res://assets/textures/herculad.png" id="2_jk63l"]
 [ext_resource type="Script" path="res://code/entities/collider.gd" id="3_5kx5f"]
 [ext_resource type="Script" path="res://code/entities/player/player_stats.gd" id="4_mqa2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vab1h"]
+atlas = ExtResource("2_jk63l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5dh5"]
+atlas = ExtResource("2_jk63l")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cj17"]
+atlas = ExtResource("2_jk63l")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lnjm"]
+atlas = ExtResource("2_jk63l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41iex"]
+atlas = ExtResource("2_jk63l")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc4yq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vab1h")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5dh5")
+}],
+"loop": true,
+"name": &"sword1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cj17")
+}],
+"loop": true,
+"name": &"sword2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lnjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41iex")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("STATS", "COLLIDER")]
 position = Vector2(16, 20)
@@ -11,10 +69,10 @@ script = ExtResource("1_cj1ld")
 STATS = NodePath("Stats")
 COLLIDER = NodePath("Collider")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_8yh73")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_fc4yq")
+animation = &"stand"
 
 [node name="Collider" type="Node2D" parent="."]
 script = ExtResource("3_5kx5f")

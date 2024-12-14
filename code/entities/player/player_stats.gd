@@ -30,6 +30,11 @@ func apply_item(new_item: Item.Types) -> bool:
 		return true
 
 
+func reset() -> void:
+	health = MAX_HEALTH
+	magic = MAX_MAGIC
+	item = Item.Types.NONE
+
 
 func print_stats() -> void:
 	print("health ", health)

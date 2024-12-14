@@ -3,8 +3,8 @@ class_name Constants
 
 const GRAVITY := 1
 const SCALE_FACTOR := 10
-const DEBUG := true
-
+const DEBUG := false
+const KILL_HEIGHT := 200 * SCALE_FACTOR
 
 static func shrink_rect(rect: Rect2i) -> Rect2i:
 	var out := Rect2i(rect.position / SCALE_FACTOR, rect.size / SCALE_FACTOR)

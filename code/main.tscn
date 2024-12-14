@@ -1,31 +1,124 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgkl6bc6m1xu3"]
+[gd_scene load_steps=12 format=3 uid="uid://bgkl6bc6m1xu3"]
 
 [ext_resource type="PackedScene" uid="uid://c6ab5k5xdet28" path="res://code/platform.tscn" id="1_oleg7"]
 [ext_resource type="Script" path="res://code/main.gd" id="1_qebgb"]
 [ext_resource type="PackedScene" uid="uid://k6uam5ycgwdw" path="res://code/entities/player/player.tscn" id="3_nj8rc"]
 [ext_resource type="PackedScene" uid="uid://c3wesuhok3qin" path="res://code/entities/pickups/health_pickup.tscn" id="4_scry6"]
 [ext_resource type="PackedScene" uid="uid://dsrgwewbn3p3" path="res://code/entities/pickups/sword_pickup.tscn" id="5_i150t"]
+[ext_resource type="PackedScene" uid="uid://5gpembpnmeuh" path="res://code/entities/enemies/basic_enemy.tscn" id="6_5tyx8"]
+[ext_resource type="FontFile" uid="uid://s6ho51wrr626" path="res://assets/fonts/nintendo-nes-font.otf" id="7_xmqat"]
+[ext_resource type="Script" path="res://code/hud/stats_label.gd" id="8_cxb5v"]
+[ext_resource type="Script" path="res://code/hud/item_label.gd" id="9_tpo8c"]
+[ext_resource type="Script" path="res://code/enemy_spawner.gd" id="10_lre3h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3pv1u"]
+font = ExtResource("7_xmqat")
+font_size = 8
 
 [node name="Main" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_qebgb")
 
-[node name="Platform1" parent="." instance=ExtResource("1_oleg7")]
+[node name="Platforms" type="Node2D" parent="."]
 
-[node name="Platform2" parent="." instance=ExtResource("1_oleg7")]
-position = Vector2(113, 82)
+[node name="Platform1" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(15, 152)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(125, 140)
 length = 500
 
-[node name="Platform3" parent="." instance=ExtResource("1_oleg7")]
-position = Vector2(92, 113)
+[node name="Platform3" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(185, 152)
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(50, 125)
+length = 500
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(200, 125)
+length = 500
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(260, 60)
+length = 500
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("1_oleg7")]
+position = Vector2(-10, 60)
+length = 500
 
 [node name="Player" parent="." node_paths=PackedStringArray("STATS", "COLLIDER") instance=ExtResource("3_nj8rc")]
+position = Vector2(61, 76)
 STATS = NodePath("Stats")
 COLLIDER = NodePath("Collider")
 
 [node name="HealthPickup" parent="." node_paths=PackedStringArray("COLLIDER") instance=ExtResource("4_scry6")]
-position = Vector2(147, 40)
+position = Vector2(192, 96)
 COLLIDER = NodePath("Collider")
 
 [node name="SwordPickup" parent="." node_paths=PackedStringArray("COLLIDER") instance=ExtResource("5_i150t")]
-position = Vector2(70, 51)
+position = Vector2(115, 107)
 COLLIDER = NodePath("Collider")
+
+[node name="BasicEnemy" parent="." node_paths=PackedStringArray("COLLIDER") instance=ExtResource("6_5tyx8")]
+position = Vector2(162, 126)
+COLLIDER = NodePath("Collider")
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="HudLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Stats" type="Label" parent="HudLayer/MarginContainer/Control" node_paths=PackedStringArray("player")]
+layout_mode = 1
+offset_right = 280.0
+offset_bottom = 8.0
+text = "HP    10
+MP    10
+LIFE  03"
+label_settings = SubResource("LabelSettings_3pv1u")
+script = ExtResource("8_cxb5v")
+player = NodePath("../../../../Player")
+
+[node name="Item" type="Label" parent="HudLayer/MarginContainer/Control" node_paths=PackedStringArray("player")]
+layout_mode = 1
+offset_left = 120.0
+offset_right = 400.0
+offset_bottom = 30.0
+text = "ITEM SWORD"
+label_settings = SubResource("LabelSettings_3pv1u")
+script = ExtResource("9_tpo8c")
+player = NodePath("../../../../Player")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+position = Vector2(5, -24)
+script = ExtResource("10_lre3h")
+enemy_scene = ExtResource("6_5tyx8")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="EnemySpawner2" type="Node2D" parent="."]
+position = Vector2(295, -24)
+script = ExtResource("10_lre3h")
+facing = -1
+enemy_scene = ExtResource("6_5tyx8")
+
+[node name="Timer" type="Timer" parent="EnemySpawner2"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemySpawner2/Timer" to="EnemySpawner2" method="_on_timer_timeout"]

@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3wesuhok3qin"]
+[gd_scene load_steps=6 format=3 uid="uid://c3wesuhok3qin"]
 
 [ext_resource type="PackedScene" uid="uid://cgt1csjo2k203" path="res://code/entities/pickups/pickup.tscn" id="1_k2cvf"]
 [ext_resource type="Script" path="res://code/entities/pickups/stats_pickup.gd" id="2_0mhmh"]
+[ext_resource type="Texture2D" uid="uid://dlpe1yvhvrj6c" path="res://assets/textures/apple.png" id="3_guti7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w61d"]
+atlas = ExtResource("3_guti7")
+region = Rect2(0, 0, 10, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_022sp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w61d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Pickup" node_paths=PackedStringArray("COLLIDER") instance=ExtResource("1_k2cvf")]
 script = ExtResource("2_0mhmh")
@@ -9,3 +25,8 @@ health = 1
 magic = 0
 lives = 0
 COLLIDER = NodePath("Collider")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_022sp")
+centered = false
+offset = Vector2(-5, -6)

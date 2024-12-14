@@ -7,4 +7,5 @@ func _ready() -> void:
 
 
 func collect() -> void:
+	active = false
 	queue_free()

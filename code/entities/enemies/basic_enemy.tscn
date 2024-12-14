@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://5gpembpnmeuh"]
+
+[ext_resource type="Script" path="res://code/entities/enemies/enemy.gd" id="1_csgyp"]
+[ext_resource type="Texture2D" uid="uid://bu5ej2pnkow4c" path="res://assets/textures/snake.png" id="2_h6xit"]
+[ext_resource type="Script" path="res://code/entities/collider.gd" id="3_awdir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3d56"]
+atlas = ExtResource("2_h6xit")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igfoq"]
+atlas = ExtResource("2_h6xit")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a63in"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3d56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igfoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BasicEnemy" type="Node2D" node_paths=PackedStringArray("COLLIDER") groups=["enemies"]]
+script = ExtResource("1_csgyp")
+COLLIDER = NodePath("Collider")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_a63in")
+autoplay = "default"
+frame_progress = 0.507851
+
+[node name="Collider" type="Node2D" parent="."]
+script = ExtResource("3_awdir")
